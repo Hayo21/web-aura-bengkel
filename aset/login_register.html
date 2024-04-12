@@ -11,30 +11,81 @@
     <link rel="stylesheet" href="./login_register.css" />
   </head>
   <body>
-    <div class="login-form rounded shadow">
-      <h2 class="text-center mb-4">Login</h2>
-      <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-          <div id="emailHelp" class="form-text">Pastikan Email Anda Benar</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" required />
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="rememberMe" />
-          <label class="form-check-label" for="rememberMe">Remember me</label>
-        </div>
+    <div class="container">
+      <div class="login-form rounded shadow">
+        <!-- form login -->
+        <h2 class="text-center mb-4">Login</h2>
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+            <div id="emailHelp" class="form-text">Pastikan Email Anda Benar</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" required />
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" />
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+          </div>
+          <!-- end form login -->
+          <!-- button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-primary btn-register">Register</button>
+          </div>
+          <!-- end button -->
+        </form>
 
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Login</button>
-          <button type="submit" class="btn btn-primary btn-register">Register</button>
+        <!-- form register -->
+        <div class="register-form rounded shadow d-none">
+          <h2 class="text-center mb-4">Register</h2>
+          <form id="registerForm">
+            <div class="mb-3">
+              <label for="exampleInputName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="exampleInputName" required />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail2" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" required />
+              <div id="emailHelp" class="form-text">Pastikan Email Anda Benar</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword2" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword2" required />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputConfirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="exampleInputConfirmPassword" required />
+            </div>
+            <!-- button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="button" class="btn btn-secondary btn-cancel">Cancel</button>
+            </div>
+            <!-- end button -->
+          </form>
         </div>
-      </form>
+        <!-- end form register -->
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const registerForm = document.querySelector(".register-form");
+        const btnRegister = document.querySelector(".btn-register");
+        const btnCancel = document.querySelector(".btn-cancel");
+
+        btnRegister.addEventListener("click", function () {
+          registerForm.classList.remove("d-none");
+        });
+
+        btnCancel.addEventListener("click", function () {
+          registerForm.classList.add("d-none");
+        });
+      });
+    </script>
   </body>
 </html>

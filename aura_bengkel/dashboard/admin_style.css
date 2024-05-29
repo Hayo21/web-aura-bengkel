@@ -1,0 +1,43 @@
+body {
+  font-family: "Recursive", sans-serif;
+  background-color: #2d3250;
+  color: #f9b17a;
+}
+
+.navbar-nav .nav-link {
+  color: #f9b17a;
+}
+
+.table-dark.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #343a40;
+}
+
+.table-dark.table-striped tbody tr:nth-of-type(even) {
+  background-color: #454d55;
+}
+
+h2,
+h3,
+th,
+td {
+  color: #f9b17a;
+}
+
+.btn-group {
+  display: flex;
+  gap: 5px;
+}
+
+@media (max-width: 576px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .table-responsive table {
+    min-width: 750px;
+  }
+}
+
+.table-dark.table-striped tbody tr:hover {
+  background-color: #60646b;
+}

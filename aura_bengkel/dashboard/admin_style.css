@@ -4,10 +4,6 @@ body {
   color: #f9b17a;
 }
 
-.navbar-nav .nav-link {
-  color: #f9b17a;
-}
-
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
   background-color: #343a40;
 }

@@ -6,8 +6,101 @@ body {
 
 .navbar-nav .nav-link {
   color: #f9b17a;
+  font-family: "Recursive", sans-serif;
+}
+
+.navbar-brand {
+  color: #f9b17a; /* Menentukan warna teks dengan spesifikasi !important */
 }
 
 ul {
   font-size: 18px;
+  color: #f9b17a;
+}
+
+.card {
+  background-color: #1c1e3e;
+  color: #f9b17a;
+}
+
+.card h2,
+.card h3,
+.card p,
+.card label {
+  color: #f9b17a;
+}
+
+.btn-primary {
+  background-color: #f9b17a;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #e8a667;
+}
+
+.btn-danger,
+.btn-info {
+  border: none;
+}
+
+.btn-danger {
+  background-color: #ff5f57;
+}
+
+.btn-danger:hover {
+  background-color: #ff4136;
+}
+
+.btn-info {
+  background-color: #007bff;
+}
+
+.btn-info:hover {
+  background-color: #0056b3;
+}
+
+.table-bordered {
+  border: 1px solid #f9b17a;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #f9b17a;
+}
+
+.table-dark {
+  background-color: #2d3250;
+  color: #f9b17a;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+.table thead th {
+  background-color: #1c1e3e;
+  color: #f9b17a;
+}
+
+/* Warna teks tabel */
+.table thead th,
+.table tbody td {
+  color: #f9b17a;
+}
+
+/* Background tabel tetap seperti semula */
+.table thead th {
+  background-color: #1c1e3e;
+}
+
+/* Warna border tabel */
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #f9b17a;
+}
+
+/* Ganti warna teks default untuk kolom "Tidak ada pesanan" */
+.table .no-orders {
+  color: #f9b17a;
 }

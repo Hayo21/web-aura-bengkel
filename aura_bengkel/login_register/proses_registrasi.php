@@ -14,7 +14,23 @@ function secure_input($data) {
 // Ambil data dari form
 $username = secure_input($_POST['username']);
 $email = secure_input($_POST['email']);
-$password = password_hash(secure_input($_POST['password']), PASSWORD_DEFAULT); // Hash password
+$password = secure_input($_POST['password']);
+
+// Validasi panjang username dan password
+if (strlen($username) < 5) {
+    $error_message = "Username harus memiliki minimal 5 karakter.";
+    echo "<script>alert('$error_message'); window.location.href='form_registrasi.php';</script>";
+    exit;
+}
+
+if (strlen($password) < 5) {
+    $error_message = "Password harus memiliki minimal 5 karakter.";
+    echo "<script>alert('$error_message'); window.location.href='form_registrasi.php';</script>";
+    exit;
+}
+
+// Hash password
+$password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
 // Query untuk memeriksa apakah username atau email sudah ada di database
 $sql_check_username = "SELECT COUNT(*) as username_count FROM users WHERE username = '$username'";
@@ -56,7 +72,7 @@ if ($admin_count == 0) {
 }
 
 // Query untuk menyimpan data registrasi ke database
-$sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$password', '$role')";
+$sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$password_hashed', '$role')";
 
 if ($conn->query($sql) === TRUE) {
     // Jika registrasi berhasil, arahkan ke halaman login dengan pesan sukses

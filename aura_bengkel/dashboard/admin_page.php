@@ -10,10 +10,34 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 // Tambahkan logika halaman admin di sini
 include '../login_register/koneksi.php';  // Sesuaikan jalur file koneksi
 
-// Ambil data pesanan dari database
-$sql = "SELECT * FROM pemesanan_layanan";
-$result = $conn->query($sql);
+// Inisialisasi filter bulan dan search query
+$selected_month = isset($_GET['month']) ? $_GET['month'] : '';
+$search_query = isset($_GET['search']) ? $_GET['search'] : '';
 
+// Ambil data pesanan dari database dengan filter bulan dan search query
+$sql = "SELECT * FROM pemesanan_layanan WHERE 1=1";
+$params = [];
+
+if ($selected_month) {
+    $sql .= " AND MONTH(tanggal_pemesanan) = ?";
+    $params[] = $selected_month;
+}
+
+if ($search_query) {
+    $sql .= " AND (nama_lengkap LIKE ? OR email LIKE ? OR nomor_telepon LIKE ? OR nomor_polisi LIKE ?)";
+    $search_term = '%' . $search_query . '%';
+    $params[] = $search_term;
+    $params[] = $search_term;
+    $params[] = $search_term;
+    $params[] = $search_term;
+}
+
+$stmt = $conn->prepare($sql);
+if ($params) {
+    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+}
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +49,11 @@ $result = $conn->query($sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../dashboard/admin_style.css"> <!-- Link ke file CSS -->
 </head>
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- end font -->
+
 <body style="background-color: #2d3250;">
 
 <!-- Navbar start -->
@@ -70,11 +99,12 @@ $result = $conn->query($sql);
 
 <!-- Navbar end -->
 
-<div class="container mt-5">
+<div class="container mt-5" >
     <h2 class="text-center mb-4">Admin Page</h2>
     <h2 class="text-center mb-4">Selamat datang, <?php echo $_SESSION['username']; ?>!</h2>
-    <a href="../login_register/logout.php" class="btn btn-danger mb-3">Logout</a>
     
+    <a href="../login_register/logout.php" class="btn btn-danger mb-3">Logout</a> 
+
     <?php
     if (isset($_SESSION['pesan'])) {
         echo "<div class='alert alert-success'>" . $_SESSION['pesan'] . "</div>";
@@ -84,6 +114,37 @@ $result = $conn->query($sql);
         echo "<div class='alert alert-danger'>Terjadi kesalahan: " . htmlspecialchars($_GET['error']) . "</div>";
     }
     ?>
+
+    <div class="card shadow mb-4 p-1  " style="background-color: #424769;">
+        <div class="card-body">
+            <h3 class="card-title">Filter Pesanan</h3>
+            <form method="GET" action="admin_page.php" class="d-flex justify-content-between">
+                <div class="input-group">
+                    <label class="input-group-text" for="month">Bulan</label>
+                    <select class="form-select" id="month" name="month">
+                        <option value="">Pilih Bulan</option>
+                        <option value="1" <?php if ($selected_month == '1') echo 'selected'; ?>>Januari</option>
+                        <option value="2" <?php if ($selected_month == '2') echo 'selected'; ?>>Februari</option>
+                        <option value="3" <?php if ($selected_month == '3') echo 'selected'; ?>>Maret</option>
+                        <option value="4" <?php if ($selected_month == '4') echo 'selected'; ?>>April</option>
+                        <option value="5" <?php if ($selected_month == '5') echo 'selected'; ?>>Mei</option>
+                        <option value="6" <?php if ($selected_month == '6') echo 'selected'; ?>>Juni</option>
+                        <option value="7" <?php if ($selected_month == '7') echo 'selected'; ?>>Juli</option>
+                        <option value="8" <?php if ($selected_month == '8') echo 'selected'; ?>>Agustus</option>
+                        <option value="9" <?php if ($selected_month == '9') echo 'selected'; ?>>September</option>
+                        <option value="10" <?php if ($selected_month == '10') echo 'selected'; ?>>Oktober</option>
+                        <option value="11" <?php if ($selected_month == '11') echo 'selected'; ?>>November</option>
+                        <option value="12" <?php if ($selected_month == '12') echo 'selected'; ?>>Desember</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Cari Pesanan..." value="<?php echo htmlspecialchars($search_query); ?>">
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="admin_page.php" class="btn btn-danger">Clear Filter</a>
+            </form>
+        </div>
+    </div>
 
     <div class="card shadow">
         <div class="card-body">

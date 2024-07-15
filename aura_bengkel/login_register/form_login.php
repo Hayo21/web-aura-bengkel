@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../login_register/form_style.css"> <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="css/form_style.css"> <!-- Link ke file CSS -->
 </head>
 <body style="background-color: #2d3250;">
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-6 ">
+            <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="text-center mb-4 title-login" style="color: #e6a456;">Login</h2>
+                        <h2 class="text-center mb-4">Login</h2>
                         <?php
                         if (isset($_GET['status']) && $_GET['status'] == 'success') {
                             echo '<p class="text-success">Registrasi berhasil! Silakan login.</p>';
@@ -22,9 +22,6 @@
                             $error = $_GET['error'];
                             if ($error == 'password') {
                                 echo '<p style="color: red;">Password salah. Silakan coba lagi.</p>';
-                            }
-                            if ($error == 'user_not_found') {
-                                echo '<p style="color: red;">Pengguna tidak ditemukan. Silakan coba lagi.</p>';
                             }
                         }
                         ?>
@@ -37,14 +34,11 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
-                            <div class="text-left mb-3">
-                                <a href="../lupa_password/form_lupa_password.php" class="btn btn-warning">Lupa Password</a>
-                            </div>
                             <div class="d-grid">
                                 <input type="submit" value="Login" class="btn btn-primary">
                             </div>
-                            <div class="d-grid mt-3">
-                                <a href="form_registrasi.php" class="btn btn-success">Register</a>
+                            <div class="text-center mt-3">
+                                <a href="form_registrasi.php" class="btn btn-secondary">Register</a>
                             </div>
                         </form>
                     </div>

@@ -82,15 +82,15 @@ $result = $stmt->get_result();
           <ul class="navbar-nav ms-auto">
             <!-- Pesanan Dibatalkan link -->
             <li class="nav-item">
-              <a class="nav-link" href="../dashboard/page_pesanan/pesanan_dibatalkan.php" style="color: #f9b17a;">Pesanan Dibatalkan</a>
+              <a class="nav-link" href="../dashboard/page_pesanan/pesanan_dibatalkan.php">Pesanan Dibatalkan</a>
             </li>
             <!-- Pesanan Diterima link -->
             <li class="nav-item">
-              <a class="nav-link" href="../dashboard/page_pesanan/pesanan_diterima.php" style="color: #f9b17a;">Pesanan Diterima</a>
+              <a class="nav-link" href="../dashboard/page_pesanan/pesanan_diterima.php">Pesanan Diterima</a>
             </li>
             <!-- user account -->
             <li class="nav-item">
-              <a class="nav-link" href="../account_setting/user_account.php" style="color: #f9b17a;">User Account</a>
+              <a class="nav-link" href="../account_setting/user_account.php">User Account</a>
             </li>
           </ul>
         </div>

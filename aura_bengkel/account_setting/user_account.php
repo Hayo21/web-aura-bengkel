@@ -80,7 +80,7 @@ $result = $conn->query($sql);
                 <ul class="navbar-nav ms-auto">
                     <!-- Kembali ke Halaman Admin -->
                     <li class="nav-item">
-                        <a class="nav-link" href="../dashboard/admin_page.php" style="color: #f9b17a;">Kembali ke Halaman Admin</a>
+                        <a class="nav-link" href="../dashboard/admin_page.php">Kembali ke Halaman Admin</a>
                     </li>
                 </ul>
             </div>
